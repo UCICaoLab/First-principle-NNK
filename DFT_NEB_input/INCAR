@@ -1,0 +1,32 @@
+#Global Parameters
+ISTART =  1            (Read existing wavefunction, if there. ISTART=0, then ICHARG=2)
+ISPIN  =  1            (Non-Spin polarised DFT)
+LREAL  =  Auto       (Projection operators: automatic)
+ENCUT  =  440       (Cut-off energy for plane wave basis set, in eV)
+LWAVE  = .FALSE.        (Write WAVECAR or not)
+LCHARG = .FALSE.        (Write CHGCAR or not)
+ 
+#Electronic Relaxation
+ISMEAR =  1            (Gaussian smearing, metals:1)
+SIGMA  =  0.2         (Smearing value in eV, metals:0.2)
+NELM   =  200           (Max electronic SCF steps)
+NELMIN =  6            (Min electronic SCF steps)
+EDIFF  =  1E-05        (SCF energy convergence, in eV)
+GGA  =  PE           (PBE exchange-correlation)
+ALGO = Fast
+ADDGRID=.TRUE.
+ 
+#Ionic Relaxation
+NSW    =  200         (Max ionic steps)
+ISIF   =  2            (Stress/relaxation: 2-Ions, 3-Shape/Ions/V, 4-Shape/Ions)
+ISYM =  0            (Symmetry: 0=none, 2=GGA, 3=hybrids)
+EDIFFG = -0.03        (Ionic convergence, eV/AA)
+
+#CI-NEB
+IBRION = 3            (Algorithm: 0-MD, 1-Quasi-New, 2-CG)
+POTIM = 0
+IOPT = 1
+ICHAIN = 0            (Indicates which method to run. NEB (ICHAIN=0) is the default)
+LCLIMB = .TRUE.
+IMAGES = 3
+SPRING = -5
