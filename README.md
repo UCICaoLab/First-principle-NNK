@@ -43,4 +43,10 @@ where `user_inp` includes all input parameters needed for the simulation.
 #### Generate outputs
 The program will generate an output file `nnk.log` in the `res_data/` directory. In `nnk.log`, the first column denotes the id of jumping atoms and the second column denotes the jump time, which could be used for extracting spatial and temporal information for further analysis.
 
-The python script postprocess.py is used for extracting useful information from simulation outputs such as reconstructing and dumping atomic configurations. 
+#### Postprocess
+The `nnk.log` only saves jumping atom id and time in order to save the time and space for printing atomic configuration information at each step. Thus, additional postprocessing is needed to extract and recover atomic configurations from `nnk.log`. In the `postprocess/` inside the `example`, a sample script is provided to extract rebuild atomic configurations from generated log file.
+
+Type the following command to generate vacancy configurations or atomic configurations from simulations:
+```bash
+python postprocess.py
+```
