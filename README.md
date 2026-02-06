@@ -1,19 +1,19 @@
-# First-principle Neural Network Kinetics (FPNNK)
-This repository contains the computational framework, First-principle Neural Network Kinetics, for implementing vacancy diffusion simulations with DFT-level predictive accuracy. The FPNNK scheme can efficiently simulate vacancy diffusion through combining deep neural network, which is trained on the diffusion barrier dataset from density functional theory calculations, and kinetic Monte Carlo. The deep neural network predicts the path-dependent energy barriers from local atomic environment encoded by on-lattice representation. The kinetic Monte Carlo samples the diffusion jump direction and timescale based on neural network predicted energy barriers. The following directories are included:
+## First-principle Neural Network Kinetics (FPNNK)
+This repository contains the computational framework, First-principle Neural Network Kinetics, for implementing vacancy diffusion simulations with DFT-level predictive accuracy. The FPNNK scheme can efficiently simulate vacancy diffusion through combining deep neural network, which is trained on the diffusion barrier dataset from density functional theory calculations, and kinetic Monte Carlo. The deep neural network predicts the path-dependent energy barriers from local atomic environment encoded by on-lattice representation. The kinetic Monte Carlo samples the diffusion jump direction and timescale based on neural network predicted energy barriers.
 
 ## Repository Structure
 - `DFT_NEB_input/` - Input files for computing diffusion barriers using the NEB method in VASP.
 - `DFT_training_data/` - Source data including atomistic structures and diffusion barriers. 
 - `fpnnk/` - Source code of the FPNNK computational framework.
 
-# Installation
+## Installation
 The package can be installed following the following steps.
 
 1. Download the python package.
 2. cd First-principle-NNK/fpnnk
 3. pip install . or pip install -e . if you would like to frequently edit soruce code
 
-# Usage
+## Usage
 In fpnnk directory, three subdirectories exists:
 1. src: storing the source code;
 2. model_weights: storing pre-trained deep neural network model weights;
