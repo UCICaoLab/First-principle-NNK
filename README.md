@@ -33,10 +33,14 @@ In `fpnnk/` directory, three subdirectories exists:
 
 The `example/` directory provides scripts for performing diffusion simulations in a equimolar Mo-Ta-W atomic system (`MoTaW.dump` is the atomic model dump file). 
 
+#### Run vacancy diffusion simulations
 To run the simulation, typing the following commands:
+```bash
 python nnk_simu.py user_inp
-where "user_inp" includes all input parameters for the simulation.
+```
+where `user_inp` includes all input parameters needed for the simulation.
 
-The program will generate the output file "nnk.log" in the folder called res_data. In nnk.log, the first column denotes the id of jumping atom and the second column denotes the jump time, which could be used for extracting spatial and temporal information for further analysis.
+#### Generate outputs
+The program will generate an output file `nnk.log` in the `res_data/` directory. In `nnk.log`, the first column denotes the id of jumping atoms and the second column denotes the jump time, which could be used for extracting spatial and temporal information for further analysis.
 
 The python script postprocess.py is used for extracting useful information from simulation outputs such as reconstructing and dumping atomic configurations. 
