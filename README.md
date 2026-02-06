@@ -9,13 +9,13 @@ This repository contains the computational framework, First-principle Neural Net
 ## Installation
 The package can be installed following the following steps.
 
-### Clone the repository
+#### Clone the repository
 ```bash
 git clone git@github.com:UCICaoLab/First-principle-NNK.git
 cd First-principle-NNK/fpnnk
 ```
 
-### Install the package
+#### Install the package
 For standard installation,
 ```bash
 pip install .
