@@ -25,17 +25,13 @@ For development installation (if you need to edit the source code frequently),
 pip install -e .
 ```
 
-1. Download the python package.
-2. cd First-principle-NNK/fpnnk
-3. pip install . or pip install -e . if you would like to frequently edit soruce code
-
 ## Usage
-In fpnnk directory, three subdirectories exists:
-1. src: storing the source code;
-2. model_weights: storing pre-trained deep neural network model weights;
-3. example: providing examples for runing some quick testing.
+In `fpnnk/` directory, three subdirectories exists:
+- `src/` - Stores the source code.
+- `model_weights/` - Stores pre-trained deep neural network model weights.
+- `example/` - Provides examples for runing some quick tests.
 
-The example folder provides scripts for performing diffusion simulations in a equimolar Mo-Ta-W atomic system (MoTaW.dump is the atomic model dump file). 
+The `example/` directory provides scripts for performing diffusion simulations in a equimolar Mo-Ta-W atomic system (`MoTaW.dump` is the atomic model dump file). 
 
 To run the simulation, typing the following commands:
 python nnk_simu.py user_inp
