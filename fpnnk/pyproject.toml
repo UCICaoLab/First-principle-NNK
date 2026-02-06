@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nnk"
+version = "0.2.0"
+description = "first principles neural network kinetics package"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy",
+  "pandas",
+  "scipy",
+  "torch",
+  "torchsummary",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
