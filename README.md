@@ -1,4 +1,4 @@
-## First-principle Neural Network Kinetics (FPNNK)
+## First-principle Neural Network Kinetics (FPNNK) | [https://github.com/UCICaoLab/First-principle-NNK](https://github.com/UCICaoLab/First-principle-NNK)
 
 This repository contains the computational framework, First-principle Neural Network Kinetics, for implementing vacancy diffusion simulations with DFT-level predictive accuracy. The FPNNK scheme can efficiently simulate vacancy diffusion through combining deep neural network, which is trained on the diffusion barrier dataset from density functional theory calculations, and kinetic Monte Carlo. The deep neural network predicts the path-dependent energy barriers from local atomic environment encoded by on-lattice representation. The kinetic Monte Carlo samples the diffusion jump direction and timescale based on neural network predicted energy barriers.
 
@@ -88,7 +88,7 @@ First-principle-NNK/
         ├── postprocess.py          # Post-processing script
         ├── plot_vacancy_trajectory.py    # Plot vacancy diffusion trajectory
         ├── vacancy_trajectory.png        # Vacancy diffusion trajectory
-        ├── run.sh                  # Bash file for running nnk simulation, postprocessing and plotting sequencially
+        ├── run.sh                  # Bash file for running nnk simulation, postprocessing and plotting sequentially
         └── res_dir/                # Output directory
 ```
 
@@ -112,7 +112,7 @@ A complete demo is provided in the `fpnnk/1600K_diffusion_in_WMoTa/` directory u
 python nnk_simu.py user_inp
 ```
 
-1. **Post-process results** using the provided `postprocess.py` script to extract atomic trajectories and calculate diffusion coefficients or other properties.
+4. **Post-process results** using the provided `postprocess.py` script to extract atomic trajectories and compute related properties.
 
 ---
 
@@ -121,8 +121,8 @@ python nnk_simu.py user_inp
 To reproduce the quantitative results reported in the manuscript:
 
 1. Install the package following the [Installation](#installation) instructions above.
-2. Navigate to `fpnnk/example/` and run the demo simulation as described in the [Demo](#demo) section.
-3. Adjust simulation input parameters to reproduce results in the manuscript where the corresponding simulation settings are provided. 
+2. Navigate to `fpnnk/1600K_diffusion_in_WMoTa/` and run the demo simulation as described in the [Demo](#demo) section.
+3. Adjust simulation input parameters in `user_inp` to reproduce results in the manuscript where the corresponding simulation settings are provided.
 
 Detailed descriptions of the FPNNK algorithm are provided in the **Methods** section of the associated manuscript.
 
