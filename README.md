@@ -59,7 +59,7 @@ pip install torch==2.4.0 numpy==1.26.4 pandas==2.2.2 matplotlib==3.10.9 scipy==1
 
 ```bash
 git clone https://github.com/UCICaoLab/First-principle-NNK.git
-cd First-principle-NNK/fpnnk
+cd First-principle-NNK
 ```
 
 ### 3. Install the package
@@ -67,12 +67,14 @@ cd First-principle-NNK/fpnnk
 **Standard installation:**
 
 ```bash
+cd fpnnk
 pip install .
 ```
 
 **Development installation** (recommended if you plan to modify source code):
 
 ```bash
+cd fpnnk
 pip install -e .
 ```
 
@@ -120,7 +122,7 @@ A complete demo is provided in the `fpnnk/1600K_diffusion_in_WMoTa/` directory u
 python nnk_simu.py user_inp
 ```
 
-1. **Post-process results** using the provided `postprocess.py` script to extract atomic trajectories and compute related properties.
+4. **Post-process results** using the provided `postprocess.py` script to extract atomic trajectories and compute related properties.
 
 ---
 
