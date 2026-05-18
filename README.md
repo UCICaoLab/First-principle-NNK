@@ -1,7 +1,6 @@
 # First-principle Neural Network Kinetics (FPNNK)
 
-This repository contains the **First-principle Neural Network Kinetics (FPNNK)** framework for simulating vacancy diffusion in alloy systems with DFT-level predictive accuracy. FPNNK combines a deep neural network trained on DFT-computed diffusion barriers with kinetic Monte Carlo (kMC) sampling to efficiently simulate vacancy diffusion at scale.
-
+This repository contains the computational framework, First-principle Neural Network Kinetics, for implementing vacancy diffusion simulations with DFT-level predictive accuracy. The FPNNK scheme can efficiently simulate vacancy diffusion through combining deep neural network, which is trained on the diffusion barrier dataset from density functional theory calculations, and kinetic Monte Carlo. The deep neural network predicts the path-dependent energy barriers from local atomic environment encoded by on-lattice representation. The kinetic Monte Carlo samples the diffusion jump direction and timescale based on neural network predicted energy barriers.
 ---
 
 ## Table of Contents
@@ -22,22 +21,26 @@ This repository contains the **First-principle Neural Network Kinetics (FPNNK)**
 
 | Package | Version Tested | Notes |
 |---|---|---|
-| Python | ≥ 3.8 | Required |
-| PyTorch | ≥ 1.10 | Deep neural network backend |
-| NumPy | ≥ 1.21 | Array operations |
+| Python | 3.12.4 | Required |
+| PyTorch | 2.4.0 | Deep neural network backend |
+| CUDA | 12.4.0 | GPU acceleration |
+| NumPy | 1.26.4 | Array operations |
+| pandas | 2.2.2 | Data handling |
+| matplotlib | 3.10.9 | Visualization |
+| scipy | 1.13.1 | Scientific computing |
+| torchsummary | 1.5.1 | Model summary utility |
 | VASP | 5.x / 6.x | Required for DFT/NEB calculations only |
 
-> For a full list of Python dependencies, see `fpnnk/setup.py` or `fpnnk/requirements.txt`.
+> Base environment: PyTorch 2.4.0, CUDA 12.4.0, Mambaforge 24.5.0-0, Python 3.12.4, Ubuntu 22.04
 
 ### Operating Systems Tested
 
-- Linux (Ubuntu 20.04, CentOS 7)
-- macOS (12+)
+- Linux (Ubuntu 22.04)
 
 ### Hardware Requirements
 
-- Standard desktop or laptop computer (no GPU required for inference)
-- GPU recommended for neural network training (CUDA-compatible)
+- Standard desktop or laptop computer
+- GPU required for neural network training (CUDA 12.4.0-compatible)
 - Typical RAM: ≥ 8 GB
 
 ---
