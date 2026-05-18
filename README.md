@@ -1,52 +1,173 @@
-## First-principle Neural Network Kinetics (FPNNK)
-This repository contains the computational framework, First-principle Neural Network Kinetics, for implementing vacancy diffusion simulations with DFT-level predictive accuracy. The FPNNK scheme can efficiently simulate vacancy diffusion through combining deep neural network, which is trained on the diffusion barrier dataset from density functional theory calculations, and kinetic Monte Carlo. The deep neural network predicts the path-dependent energy barriers from local atomic environment encoded by on-lattice representation. The kinetic Monte Carlo samples the diffusion jump direction and timescale based on neural network predicted energy barriers.
+# First-principle Neural Network Kinetics (FPNNK)
 
-## Repository Structure
-- `DFT_NEB_input/` - Input files for computing diffusion barriers using the NEB method in VASP.
-- `DFT_training_data/` - Source data including atomistic structures and diffusion barriers. 
-- `fpnnk/` - Source code of the FPNNK computational framework.
+This repository contains the **First-principle Neural Network Kinetics (FPNNK)** framework for simulating vacancy diffusion in alloy systems with DFT-level predictive accuracy. FPNNK combines a deep neural network trained on DFT-computed diffusion barriers with kinetic Monte Carlo (kMC) sampling to efficiently simulate vacancy diffusion at scale.
+
+---
+
+## Table of Contents
+
+- [System Requirements](#system-requirements)
+- [Installation](#installation)
+- [Repository Structure](#repository-structure)
+- [Demo](#demo)
+- [Instructions for Use](#instructions-for-use)
+- [Reproducing Results](#reproducing-results)
+- [License](#license)
+
+---
+
+## System Requirements
+
+### Software Dependencies
+
+| Package | Version Tested | Notes |
+|---|---|---|
+| Python | ≥ 3.8 | Required |
+| PyTorch | ≥ 1.10 | Deep neural network backend |
+| NumPy | ≥ 1.21 | Array operations |
+| VASP | 5.x / 6.x | Required for DFT/NEB calculations only |
+
+> For a full list of Python dependencies, see `fpnnk/setup.py` or `fpnnk/requirements.txt`.
+
+### Operating Systems Tested
+
+- Linux (Ubuntu 20.04, CentOS 7)
+- macOS (12+)
+
+### Hardware Requirements
+
+- Standard desktop or laptop computer (no GPU required for inference)
+- GPU recommended for neural network training (CUDA-compatible)
+- Typical RAM: ≥ 8 GB
+
+---
 
 ## Installation
-The package can be installed following the following steps.
 
-#### Clone the repository
+### 1. Clone the repository
+
 ```bash
-git clone git@github.com:UCICaoLab/First-principle-NNK.git
+git clone https://github.com/UCICaoLab/First-principle-NNK.git
 cd First-principle-NNK/fpnnk
 ```
 
-#### Install the package
-For standard installation,
+### 2. Install the package
+
+**Standard installation:**
+
 ```bash
 pip install .
 ```
-For development installation (if you need to edit the source code frequently), 
+
+**Development installation** (recommended if you plan to modify source code):
+
 ```bash
 pip install -e .
 ```
 
-## Usage
-In `fpnnk/` directory, three subdirectories exists:
-- `src/` - Stores the source code.
-- `model_weights/` - Stores pre-trained deep neural network model weights.
-- `example/` - Provides examples for runing some quick tests.
+**Typical installation time:** ~2–5 minutes on a normal desktop computer.
 
-The `example/` directory provides scripts for performing diffusion simulations in a equimolar Mo-Ta-W atomic system (`MoTaW.dump` is the atomic model dump file). 
+---
 
-#### Run vacancy diffusion simulations
-To run the simulation, typing the following commands:
+## Repository Structure
+
+```
+First-principle-NNK/
+├── DFT_NEB_input/        # VASP input files for NEB diffusion barrier calculations
+├── DFT_training_data/    # Atomistic structures and DFT-computed diffusion barriers
+└── fpnnk/
+    ├── src/              # Source code for the FPNNK framework
+    ├── model_weights/    # Pre-trained neural network model weights
+    └── example/
+        ├── MoTaW.dump        # Example atomic model (equimolar Mo-Ta-W system)
+        ├── user_inp          # Example input parameter file
+        ├── nnk_simu.py       # Main simulation script
+        └── postprocess/
+            └── postprocess.py  # Post-processing script to recover atomic configurations
+```
+
+---
+
+## Demo
+
+A complete demo is provided in the `fpnnk/example/` directory using an equimolar **Mo-Ta-W** alloy system.
+
+### Run the demo
+
+```bash
+cd fpnnk/example
+python nnk_simu.py user_inp
+```
+
+where `user_inp` is the input parameter file specifying simulation settings (e.g., temperature, number of steps, atomic model path).
+
+**Expected output:** An `nnk.log` file will be generated in the `res_data/` directory. Each row contains:
+- Column 1: ID of the jumping atom
+- Column 2: Jump time (physical time in seconds)
+
+**Expected run time:** ~a few minutes on a normal desktop computer for a short demo simulation.
+
+### Post-processing
+
+The `nnk.log` file stores only atom IDs and times to save storage. To recover full atomic configurations:
+
+```bash
+cd fpnnk/example/postprocess
+python postprocess.py
+```
+
+This script rebuilds atomic configurations (positions of all atoms at each step) from the log file.
+
+---
+
+## Instructions for Use
+
+### Running vacancy diffusion simulations on your own data
+
+1. **Prepare your atomic model** — provide a LAMMPS `.dump` file with your alloy system.
+2. **Edit `user_inp`** — specify your atomic model file path, temperature, number of kMC steps, and other parameters.
+3. **Run the simulation:**
+
 ```bash
 python nnk_simu.py user_inp
 ```
-where `user_inp` includes all input parameters needed for the simulation.
 
-#### Generate outputs
-The program will generate an output file `nnk.log` in the `res_data/` directory. In `nnk.log`, the first column denotes the id of jumping atoms and the second column denotes the jump time, which could be used for extracting spatial and temporal information for further analysis.
+4. **Post-process results** using the provided `postprocess.py` script to extract atomic trajectories and calculate diffusion coefficients or other properties.
 
-#### Postprocess
-The `nnk.log` only saves jumping atom id and time in order to save the time and space for printing atomic configuration information at each step. Thus, additional postprocessing is needed to extract and recover atomic configurations from `nnk.log`. In the `postprocess/` inside the `example/`, a sample script is provided to rebuild atomic configurations from the generated log file.
+### Computing new DFT training data (optional)
 
-Type the following command to generate vacancy configurations or atomic configurations from simulations:
-```bash
-python postprocess.py
-```
+If you wish to retrain the neural network for a new alloy system:
+
+1. Use the VASP input files in `DFT_NEB_input/` as templates to compute NEB diffusion barriers for your system.
+2. Add computed barriers and structures to `DFT_training_data/`.
+3. Retrain the neural network using the training scripts in `fpnnk/src/`.
+
+---
+
+## Reproducing Results
+
+To reproduce the quantitative results reported in the manuscript:
+
+1. Install the package following the [Installation](#installation) instructions above.
+2. Navigate to `fpnnk/example/` and run the demo simulation as described in the [Demo](#demo) section.
+3. Use `postprocess.py` to extract atomic configurations and compute mean-squared displacement (MSD) and diffusion coefficients.
+
+Detailed pseudocode and descriptions of the FPNNK algorithm are provided in the **Methods** section and **Extended Data** of the associated manuscript.
+
+---
+
+## License
+
+Please see the `LICENSE` file in this repository for terms of use.
+
+---
+
+## Citation
+
+If you use this code, please cite the associated manuscript (citation details to be added upon publication).
+
+---
+
+## Contact
+
+For questions or issues, please open a GitHub Issue or contact the corresponding author via the associated manuscript.

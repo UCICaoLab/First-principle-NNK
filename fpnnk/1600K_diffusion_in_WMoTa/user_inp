@@ -10,7 +10,7 @@ voxel_size: 1.62
 flatten: 0
 
 init_step: 1
-num_of_steps: 100
+num_of_steps: 1000
 dump_vacancy_id: 1
 random_vacancy: 1
 vacancy_id: 1000
@@ -18,5 +18,5 @@ num_of_cpus: 1
 log_file: nnk.log
 res_dir: ./res_data
 
-temperature: 3000
+temperature: 1600
 ml_model_weight: ../model_weights/model_d4_v2.pt 
