@@ -112,7 +112,7 @@ A complete demo is provided in the `fpnnk/1600K_diffusion_in_WMoTa/` directory u
 python nnk_simu.py user_inp
 ```
 
-4. **Post-process results** using the provided `postprocess.py` script to extract atomic trajectories and compute related properties.
+1. **Post-process results** using the provided `postprocess.py` script to extract atomic trajectories and compute related properties.
 
 ---
 
