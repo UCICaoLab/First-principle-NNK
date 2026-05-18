@@ -2,3 +2,5 @@ README.md.1
 *.png
 fpnnk/build/
 fpnnk/src/nnk.egg-info/
+fpnnk/1600K_diffusion_in_WMoTa/postprocess/
+fpnnk/1600K_diffusion_in_WMoTa/res_dir/

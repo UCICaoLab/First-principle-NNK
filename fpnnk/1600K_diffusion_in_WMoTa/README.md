@@ -22,7 +22,8 @@ The folder `1600K_diffusion_in_WMoTa` demonstrates an example of using the First
 ├── MoTaW.dump                   # Dump file of W-Mo-Ta alloy
 ├── nnk_simu.py                  # Main simulation driver
 ├── postprocess.py               # Construct vacancy config dump file from simulation log file
-└── plot_vacancy_trajectory.py   # Visualize vacancy diffusion trajectory in 3d space
+├── plot_vacancy_trajectory.py   # Visualize vacancy diffusion trajectory in 3d space
+└── run.sh                       # Run simulation, postprocessing and plotting in one shot
 ```
 
 ---
