@@ -97,9 +97,7 @@ First-principle-NNK/
         ├── nnk_simu.py             # Main simulation script
         ├── postprocess.py          # Post-processing script
         ├── plot_vacancy_trajectory.py    # Plot vacancy diffusion trajectory
-        ├── vacancy_trajectory.png        # Vacancy diffusion trajectory
-        ├── run.sh                  # Bash file for running nnk simulation, postprocessing and plotting sequentially
-        └── res_dir/                # Output directory
+        └── run.sh                  # Bash file for running nnk simulation, postprocessing and plotting sequentially
 ```
 
 ---
