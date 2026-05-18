@@ -47,14 +47,22 @@ This repository contains the computational framework, First-principle Neural Net
 
 ## Installation
 
-### 1. Clone the repository
+### 1. Create and activate a virtual environment
+
+```bash
+conda create -n nnk python=3.12.4
+conda activate nnk
+pip install torch==2.4.0 numpy==1.26.4 pandas==2.2.2 matplotlib==3.10.9 scipy==1.13.1 torchsummary==1.5.1
+```
+
+### 2. Clone the repository
 
 ```bash
 git clone https://github.com/UCICaoLab/First-principle-NNK.git
 cd First-principle-NNK/fpnnk
 ```
 
-### 2. Install the package
+### 3. Install the package
 
 **Standard installation:**
 
